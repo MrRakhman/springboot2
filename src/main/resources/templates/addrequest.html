@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="main_layout.html">
+
+<div layout:fragment="siteContent">
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <form action="/add-request" method="post">
+        <div class="row">
+          <div class="col-12">
+            <label>ФИО:</label>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <input type="text" class="form-control" name="userName" placeholder="ФИО" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <label>Курс:</label>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <select type="text" class="form-select" name="courseName" placeholder="Выберите Курс">
+              <option>Data Science</option>
+              <option>Data Engineering</option>
+              <option>Java Development</option>
+              <option>UI/UX Design</option>
+              <option>Flutter Development</option>
+              <option>Android Development</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <label>Телефон:</label>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <input type="text" class="form-control" name="phone" placeholder="+7(7___)_______" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
+            <label>Комментарии:</label>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <textarea type="text" rows="6" class="form-control" name="commentary"
+                      required placeholder="Комментарии"></textarea>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12">
+            <button class="btn btn-success" type="submit">Добавить Заявку</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</html>

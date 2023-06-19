@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="main_layout.html">
+<head th:include="head.html"></head>
+<div layout:fragment="siteContent" class="pb-5">
+    <div class="row mt-5">
+        <div class="col-8 mx-auto">
+          <form action="/save-request" method="post" th:if="${zapros != null}">
+              <input type="hidden" name="id" th:value="${zapros.id}">
+              <div class="row">
+                  <div class="col-12">
+                      <label>ФИО:</label>
+                  </div>
+                  <div class="row mt-2">
+                      <div class="col-12">
+                          <input type="text" class="form-control"
+                                 name="userName" placeholder="ФИО:"
+                                 th:value="${zapros.userName}" required>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-12">
+                      <label>Курс:</label>
+                  </div>
+                  <div class="row mt-2">
+                      <div class="col-12">
+                          <select class="form-select" name="courseName" placeholder="Выберите Курс">
+                              <option th:value="${zapros.courseName}"></option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12">
+                      <label>Телефон:</label>
+                  </div>
+                  <div class="row mt-2">
+                      <div class="col-12">
+                          <input type="text" class="form-control"
+                                 name="phone"
+                                 placeholder="___:"
+                                 th:value="${zapros.phone}"
+                                 required>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12">
+                      <label>Комментарии:</label>
+                  </div>
+                  <div class="row mt-2">
+                      <div class="col-12">
+                        <textarea type="text" rows="6" class="form-control"
+                                  name="commentary"
+                                  placeholder="Комментарии:"
+                                  th:value="${zapros.commentary}"
+                                  required>
+                        </textarea>
+                      </div>
+                  </div>
+              </div>
+              <div class="row mt-2">
+                  <div class="col-12">
+                      <button class="btn btn-success">Обработать Заявку</button>
+                      <button class="btn btn-danger ms-2"
+                              data-bs-toggle="modal" data-bs-target="#deleteModal">Удалить Заявку</button>
+                  </div>
+              </div>
+            </form>
+
+            <div class="modal fade" id="deleteModal" data-bs-backdrop="static"
+                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                 aria-hidden="true" th:if="${zapros != null}">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form th:action="@{'/delete-request'}" method="post">
+                            <input type="hidden" name="id" th:value="${zapros.id}">
+                            <div class="modal-header">
+                                <h1 class="modal-title" id="staticBackdropLabel">Подтвердите Удаление Запроса</h1>
+                                <button type="button" class="btn-close"
+                                        data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <h3 class="text-center">Точно хотите удалить заявку?</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ОТМЕНА</button>
+                                <button class="btn btn-danger">УДАЛИТЬ</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <h4 th:if="${zapros == null}" class="text-center">
+                MUSIC IS NOT FOUND!
+            </h4>
+        </div>
+    </div>
+</div>
+</html>
